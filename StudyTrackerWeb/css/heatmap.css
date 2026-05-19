@@ -1,0 +1,267 @@
+/* ─── HEATMAP STYLES ─────────────────────────────── */
+.heatmap-wrap {
+    padding: 0 20px 20px;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.heatmap-wrap::-webkit-scrollbar {
+    display: none;
+}
+
+.heatmap-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-3);
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-left: 2px;
+}
+
+.heatmap-grid {
+    display: flex;
+    gap: 3px;
+    align-items: flex-start;
+}
+
+.heatmap-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.heatmap-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: var(--heat-0);
+    cursor: pointer;
+    transition: transform 100ms ease, opacity 100ms ease;
+    flex-shrink: 0;
+}
+
+.heatmap-cell:hover {
+    transform: scale(1.35);
+    opacity: .9;
+}
+
+.heatmap-cell.heat-0 {
+    background: var(--heat-0);
+}
+
+.heatmap-cell.heat-1 {
+    background: var(--heat-1);
+}
+
+.heatmap-cell.heat-2 {
+    background: var(--heat-2);
+}
+
+.heatmap-cell.heat-3 {
+    background: var(--heat-3);
+}
+
+.heatmap-cell.heat-4 {
+    background: var(--heat-4);
+}
+
+/* Heat colour tokens — light */
+:root {
+    --heat-0: #ebedf0;
+    --heat-1: #9be9a8;
+    --heat-2: #40c463;
+    --heat-3: #30a14e;
+    --heat-4: #216e39;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --heat-0: #1e1e26;
+        --heat-1: #0e4429;
+        --heat-2: #006d32;
+        --heat-3: #26a641;
+        --heat-4: #39d353;
+    }
+}
+
+/* Month label row */
+.heatmap-months {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 4px;
+}
+
+.month-label {
+    font-size: 10px;
+    color: var(--text-3);
+    width: 12px;
+    text-align: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+/* ── Streak / stat cards ── */
+.analytics-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 20px 16px;
+}
+
+.a-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 10px 14px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Accent top stripe */
+.a-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #60a5fa);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.a-card .a-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: var(--text-3);
+    margin-bottom: 6px;
+}
+
+.a-card .a-value {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.a-card .a-unit {
+    font-size: 10px;
+    color: var(--text-3);
+    margin-top: 3px;
+    font-weight: 600;
+}
+
+/* ── Mini heatmap on dashboard ── */
+.mini-heatmap-wrap {
+    padding: 0 20px 8px;
+}
+
+.mini-heatmap-row {
+    display: flex;
+    gap: 2px;
+}
+
+.mini-cell {
+    width: 9px;
+    height: 9px;
+    border-radius: 1.5px;
+    flex-shrink: 0;
+}
+
+.mini-cell.heat-0 {
+    background: var(--heat-0);
+}
+
+.mini-cell.heat-1 {
+    background: var(--heat-1);
+}
+
+.mini-cell.heat-2 {
+    background: var(--heat-2);
+}
+
+.mini-cell.heat-3 {
+    background: var(--heat-3);
+}
+
+.mini-cell.heat-4 {
+    background: var(--heat-4);
+}
+
+/* ── Day detail popup ── */
+.day-popup {
+    position: absolute;
+    bottom: calc(var(--nav-h) + 80px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    width: 280px;
+    box-shadow: var(--shadow-lg);
+    z-index: 50;
+    animation: fadeUp 160ms ease both;
+}
+
+.day-popup h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-1);
+}
+
+.day-popup p {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-popup p span {
+    font-weight: 600;
+    color: var(--text-1);
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-3);
+    display: flex;
+    align-items: center;
+}
+
+.popup-close .material-symbols-rounded {
+    font-size: 16px;
+}
+
+/* section divider */
+.section-gap {
+    margin-top: 24px;
+}
+
+/* ── BS date chip (live preview below date inputs) ── */
+.bs-chip {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-text);
+    background: var(--accent-light);
+    border-radius: 99px;
+    padding: 2px 8px;
+    display: inline-block;
+    margin-top: 4px;
+    min-height: 16px;
+    letter-spacing: .2px;
+}
